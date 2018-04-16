@@ -39,8 +39,9 @@ class Home extends Component {
   }
 
   componentDidMount() {
-    const token = getFromStorage('the_main_app');
-    if (token) {
+    const obj = getFromStorage('the_main_app');
+    if (obj && obj.token) {
+      const { token } = obj;
       //verify token
        fetch('/api/account/verify?token=' + token)
       .then(res => res.json())
@@ -122,34 +123,86 @@ class Home extends Component {
       signUpEpicID,
       signUpPassword,
     } = this.state;
+
+    this.setState({
+      isLoading: true,
+    });
     
     //Post request to backend
-   fetch('/api/counters', { 
+   fetch('/api/account/signup', { 
     method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
     body: JSON.stringify({
-      firstName: signUpFirstName
-      lastName: signUpLastName
-      password: signUpPassword
-      email: signUpEmail
-      epicID: signUpEpicID
-      SteamID: signUpSteamID
-
-    })
-     })
-      .then(res => res.json())
+        firstName: signUpFirstName,
+        lastName: signUpLastName,
+        password: signUpPassword,
+        email: signUpEmail,
+        epicID: signUpEpicID,
+        SteamID: signUpSteamID,
+      }),
+    }).then(res => res.json())
       .then(json => {
-        let data = this.state.counters;
-        data.push(json);
-
-        this.setState({
-          counters: data
-        });
-      });
-  } 
+       if (json.succes) { 
+          this.setState({
+            signUpError: json.message,
+            isLoading: false,
+            signUpEmail: '',
+            signUpPassword: '',
+            signUpFirstName: '',
+            signUpLastName: '',
+            signUpSteamID '',
+            signUpEpicID '',
+          });
+    } else {
+      this.setState({
+        signUpError: json.message,
+        isLoading: false,
+       });
+      } 
+    });  
+   }   
 
   onSignIn() {
-    //Grab State
+//Grab State
+    const {
+      signInEmail,
+      signInPassword,
+    } = this.state;
+
+    this.setState({
+      isLoading: true,
+    });
+    
     //Post request to backend
+   fetch('/api/account/signin', { 
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+        password: signInPassword,
+        email: signInEmail,
+      }),
+    }).then(res => res.json())
+      .then(json => {
+       if (json.succes) { 
+          setInStorage('the_main_app', { token: json.token});
+          this.setState({
+            signInError: json.message,
+            isLoading: false,
+            signInEmail: '',
+            signInPassword: '',
+            token: json.token,
+          });
+    } else {
+      this.setState({
+        signInError: json.message,
+        isLoading: false,
+       });
+      } 
+    });  
   }
   
   render() {
