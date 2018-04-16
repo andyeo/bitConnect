@@ -1,11 +1,11 @@
 {
-  "name": "MERN-boilerplate",
+  "name": "bitConnect",
   "version": "1.0.0",
-  "description": "MERN stack project boilerplate",
-  "author": "Eugene Cheung",
+  "description": "Gamer Tag Hub",
+  "author": "David and Andy",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/arkon/MERN-boilerplate.git"
+    "url": "https://github.com/andyeo/bitConnect"
   },
   "license": "MIT",
   "private": true,
