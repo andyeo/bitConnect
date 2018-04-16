@@ -55,7 +55,9 @@ module.exports = (app) => {
 			success: false,
 			message: 'Error: password cannot be blank'
 			});
-		}		
+		}
+		
+
 
 		email = email.toLowerCase ();
 
