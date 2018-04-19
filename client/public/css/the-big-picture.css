@@ -1,0 +1,13 @@
+/*!
+ * Start Bootstrap - The Big Picture (https://startbootstrap.com/template-overviews/the-big-picture)
+ * Copyright 2013-2017 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-the-big-picture/blob/master/LICENSE)
+ */
+
+body {
+  background: url('https://slack-imgs.com/?c=1&url=https%3A%2F%2Fblog.intuz.com%2Fcontent%2Fimages%2F2017%2F05%2Freflection-pad-gaming-gamepad.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+}

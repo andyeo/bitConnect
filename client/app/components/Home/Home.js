@@ -195,6 +195,16 @@ class Home extends Component {
   }
 
   render() {
+    const pageIndex = {
+    fontSize: '20px',
+    textAlign: 'floatleft',
+    margin: '20px',
+    background: '#69D2E7',
+    boxShadow: '0 0 0 10px rgba(255,255,255,.25)'
+        };
+
+
+
     const {
       isLoading,
       token,
@@ -264,6 +274,12 @@ class Home extends Component {
         </div>
       );
     }
+
+   
+
+
+
+
 
     return (
       <div>
